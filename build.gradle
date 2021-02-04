@@ -11,7 +11,8 @@ buildscript {
         materialVersion = '1.2.1'
         roomVersion = '2.2.6'
         retrofitVersion = '2.9.0'
-        loggingVersionn = '4.3.1'
+        loggingVersion = '4.3.1'
+        glideVersion = '4.11.0'
         // testing
         junitVersion = '4.13.1'
         espressoVersion = '3.3.0'

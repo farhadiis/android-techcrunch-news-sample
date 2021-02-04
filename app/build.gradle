@@ -40,6 +40,7 @@ dependencies {
 
     implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
     implementation "androidx.activity:activity-ktx:$rootProject.activityVersion"
+    implementation "androidx.fragment:fragment-ktx:$rootProject.activityVersion"
 
     // Kotlin components
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -48,6 +49,7 @@ dependencies {
 
     // Room components
     implementation "androidx.room:room-ktx:$rootProject.roomVersion"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt "androidx.room:room-compiler:$rootProject.roomVersion"
     androidTestImplementation "androidx.room:room-testing:$rootProject.roomVersion"
 
@@ -63,7 +65,11 @@ dependencies {
     // Network
     implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
-    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.loggingVersionn"
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.loggingVersion"
+
+    // Glide
+    implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
+    kapt "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
 
     // Testing
     testImplementation "junit:junit:$rootProject.junitVersion"
