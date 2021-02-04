@@ -48,7 +48,7 @@
         tools:text="title" />
 
     <TextView
-        android:id="@+id/content"
+        android:id="@+id/desc"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ellipsize="end"

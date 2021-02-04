@@ -3,6 +3,7 @@ package com.farhad.techcrunch.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 import java.util.*
 
 @Entity(tableName = "news")
@@ -16,4 +17,4 @@ data class NewsItem(
     @ColumnInfo(name = "published_at") val publishedAt: String? = null,
     @ColumnInfo(name = "content") val content: String? = null,
     @ColumnInfo(name = "description") val description: String? = null
-)
+) : Serializable

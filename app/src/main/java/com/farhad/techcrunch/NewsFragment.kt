@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -40,7 +42,19 @@ class NewsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val adapter = NewsListAdapter(Glide.with(activity!!))
+        val adapter = NewsListAdapter(Glide.with(activity!!), object : NewsListAdapter.NewsItemDelegate {
+            override fun onClick(v: View) {
+                val itemPosition: Int = recyclerView.getChildLayoutPosition(v)
+                val item = (recyclerView.adapter as NewsListAdapter).getNewsItem(itemPosition)
+                val manager: FragmentManager = activity!!.supportFragmentManager
+                val transaction: FragmentTransaction = manager.beginTransaction()
+                transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_left,
+                    R.anim.slide_out_right, R.anim.slide_in_right)
+                transaction.replace(R.id.main, DetailNewsFragment.newInstance(item))
+                transaction.addToBackStack(null);
+                transaction.commit()
+            }
+        })
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(activity)
         newsViewModel.news.observe(this) { status ->
