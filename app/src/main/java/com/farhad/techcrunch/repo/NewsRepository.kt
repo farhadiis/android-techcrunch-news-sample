@@ -9,15 +9,30 @@ import kotlinx.coroutines.flow.Flow
 
 class NewsRepository(private val newsDao: NewsDao, private val apiInterface: ApiInterface) {
 
-    val allNews: Flow<List<NewsItem>> = newsDao.getNews()
+    val allFlowNews: Flow<List<NewsItem>> = newsDao.getFlowNews()
 
     @WorkerThread
-    suspend fun getNewsObject(): NewsObject {
+    suspend fun remoteNews(): NewsObject {
         return apiInterface.getTechCrunchNews()
+    }
+
+    @WorkerThread
+    suspend fun allNews(): List<NewsItem> {
+        return newsDao.getNews()
     }
 
     @WorkerThread
     suspend fun insert(newsItem: NewsItem) {
         newsDao.insert(newsItem)
+    }
+
+    @WorkerThread
+    suspend fun insert(newsItems: List<NewsItem>) {
+        newsDao.insert(newsItems)
+    }
+
+    @WorkerThread
+    suspend fun deleteAll() {
+        newsDao.deleteAll()
     }
 }

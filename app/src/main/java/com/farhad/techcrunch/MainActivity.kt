@@ -18,9 +18,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        newsViewModel.allNews.observe(this) { news ->
-            news.let { Log.d("ewdewd", "" + it.size + "") }
+        newsViewModel.news.observe(this) { status ->
+            status.let { Log.d("ewdewd", "" + it + "") }
         }
-        newsViewModel.dd()
     }
 }

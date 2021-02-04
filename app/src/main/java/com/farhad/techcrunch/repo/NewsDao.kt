@@ -11,10 +11,16 @@ import kotlinx.coroutines.flow.Flow
 interface NewsDao {
 
     @Query("SELECT * FROM news ORDER BY published_at DESC")
-    fun getNews(): Flow<List<NewsItem>>
+    fun getFlowNews(): Flow<List<NewsItem>>
+
+    @Query("SELECT * FROM news ORDER BY published_at DESC")
+    suspend fun getNews(): List<NewsItem>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(newsItem: NewsItem)
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insert(newsItems: List<NewsItem>)
 
     @Query("DELETE FROM news")
     suspend fun deleteAll()
