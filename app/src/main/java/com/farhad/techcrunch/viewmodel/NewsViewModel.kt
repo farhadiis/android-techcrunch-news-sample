@@ -5,7 +5,6 @@ import androidx.lifecycle.*
 import com.farhad.techcrunch.model.NewsItem
 import com.farhad.techcrunch.repo.NewsRepository
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
 class NewsViewModel(private val repository: NewsRepository) : ViewModel() {
 
@@ -20,6 +19,8 @@ class NewsViewModel(private val repository: NewsRepository) : ViewModel() {
                     repository.deleteAll()
                     repository.insert(remoteNews.articles)
                     liveData.value = NewsStatus.Success(remoteNews.articles)
+                } else {
+                    throw Exception("remote news is empty.")
                 }
             } catch (e: Exception) {
                 Log.e("NewsViewModel", "Fetch", e)
